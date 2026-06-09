@@ -9,7 +9,7 @@ public class EnrollmentService
          if (course.Capacity <= 0)
          throw new InvalidOperationException($"Course {course.Code} has invalid capacity: {course.Capacity}. Capacity must be greater than zero.");
          if (course.EnrolledCount >= course.Capacity)
-         throw new InvalidOperationException($"Course {course.Code} is full. Enrolled: {course.EnrolledCount}, Capacity: {course.Capacity}.");
+         throw new CapacityReachedException(course.Code);
 
          string status = student.GPA switch
         {
